@@ -1,0 +1,151 @@
+{
+  "app_name": "SRS Agency Billing",
+  "personality": "1 iOS-Native Clean",
+  "personality_one_liner": "A highly functional, fast, and clear utility app designed for day-to-day shopkeeper billing.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#111827",
+    "surfaceSecondary": "#F4F6F9",
+    "onSurfaceSecondary": "#4B5563",
+    "surfaceTertiary": "#E2E8F0",
+    "onSurfaceTertiary": "#6B7280",
+    "surfaceInverse": "#111827",
+    "onSurfaceInverse": "#F9FAFB",
+    "brand": "#133A82",
+    "brandPrimary": "#133A82",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#1E4B9E",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#DBEAFE",
+    "onBrandTertiary": "#1E3A8A",
+    "success": "#10B981",
+    "onSuccess": "#FFFFFF",
+    "warning": "#F59E0B",
+    "onWarning": "#FFFFFF",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#E5E7EB",
+    "borderStrong": "#D1D5DB",
+    "divider": "#F3F4F6"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous padding for inputs to ensure large touch targets. Maintain tight groupings inside item cards.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "stack_only",
+  "icon_set": "Ionicons",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use glassmorphism on the sticky bottom action bars over scrollable lists."
+    ],
+    "dont's": [
+      "Do not use glass on form inputs or cards, to keep the utility feel."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home",
+      "purpose": "Start a new bill or access saved bills.",
+      "states": {
+        "loading": "Centered spinner",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Top section features the brand logo. Below it, a large, prominent text input for 'Customer Name'. The screen has a sticky bottom container with a primary 'Next' button (to proceed to bill creation) and a secondary 'Saved Bills' button."
+    },
+    {
+      "name": "Bill Creation",
+      "purpose": "Enter dates and multi-row items for the bill.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "Error toast for incomplete fields"
+      },
+      "layout": "Scrollable form layout. Top row has 'From Date' and 'To Date' pickers side-by-side. Below is a dynamic list of item cards. Each item card has text inputs for 'Item Name', 'Quantity' (numeric keyboard), and 'Rate' (numeric keyboard), with auto-calculated 'Amount' shown. Below the list is a '+ Add Item' secondary button. A sticky bottom bar displays the running Total Amount on the left, and a 'Generate Bill' primary button on the right."
+    },
+    {
+      "name": "Bill Preview",
+      "purpose": "Display the formatted bill and provide sharing options.",
+      "states": {
+        "loading": "Generating PDF indicator",
+        "empty": "N/A",
+        "error": "Failed to generate PDF message"
+      },
+      "layout": "A full-screen preview of the generated bill matching the provided PDF layout (deep navy blue borders, shop address, tabular items). A sticky glass bottom bar houses three primary actions: 'Share', 'Print', and 'Save'."
+    },
+    {
+      "name": "Saved Bills",
+      "purpose": "List previously saved bills.",
+      "states": {
+        "loading": "Skeleton list",
+        "empty": "Illustration of a blank receipt with 'No saved bills yet'.",
+        "error": "Failed to load bills."
+      },
+      "layout": "Vertical list of cards. Each card displays Customer Name, Date Range, and Total Amount. Tapping a card opens the Bill Preview. Swipe-to-delete or a delete icon button on each card."
+    }
+  ],
+  "images": {
+    "logo": {
+      "url": "https://customer-assets.emergentagent.com/job_e5e6d67b-34bc-4cd9-b0bd-087bab73d935/artifacts/qjd3kbf4_Screenshot%202026-06-16%20at%202.25.07%E2%80%AFPM.png",
+      "alt": "SRS Agency Logo"
+    },
+    "empty_receipt": {
+      "url": "https://images.unsplash.com/photo-1693045181224-9fc2f954f054?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxibGFuayUyMHJlY2VpcHQlMjBiaWxsJTIwZG9jdW1lbnQlMjBpbGx1c3RyYXRpb24lMjBtaW5pbWFsfGVufDB8fHx8MTc4MTYwMDgwMHww&ixlib=rb-4.1.0&q=85",
+      "alt": "Blank receipt document illustration"
+    }
+  },
+  "haptics": {
+    "primary_button_press": "impactLight",
+    "add_item": "impactLight",
+    "delete_item": "notificationWarning",
+    "generate_bill_success": "notificationSuccess"
+  },
+  "instructions_to_main_agent": [
+    "Use 'Plus Jakarta Sans' (or system default sans-serif if not loading) for a clean, utilitarian typography scale.",
+    "Theme strictly uses the SRS Agency deep navy blue (#133A82) derived from the logo, pairing it with white and very light gray. No purple or indigo defaults.",
+    "On the Bill Creation screen, ensure the 'Amount' automatically calculates as Quantity * Rate.",
+    "Implement the Bill Preview strictly referencing the provided PDF format: it requires the shop address, phone numbers, signature line, and tabular structure.",
+    "The sticky bottom bar on the Bill Creation screen should use glassmorphism with the Total Amount on the left and 'Generate Bill' CTA on the right.",
+    "Use KeyboardAvoidingView for the item entry form to ensure input fields are not obscured.",
+    "Persist saved bills to local storage (AsyncStorage) since no auth/backend is required."
+  ]
+}
