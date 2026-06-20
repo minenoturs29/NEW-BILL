@@ -65,7 +65,7 @@ export default function HomeScreen() {
             <TextInput
               testID="customer-name-input"
               style={[styles.input, error ? styles.inputError : null]}
-              placeholder="e.g. Dr Girish Natyana"
+              placeholder="Enter customer name"
               placeholderTextColor={colors.onSurfaceTertiary}
               value={name}
               onChangeText={(t) => {

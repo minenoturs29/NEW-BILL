@@ -12,10 +12,10 @@ import {
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Haptics from 'expo-haptics';
 import { colors, spacing, radius } from '@/src/lib/theme';
 import { BillItem, calcAmount, calcTotal, newId } from '@/src/lib/storage';
+import DatePickerModal from '@/src/components/DatePickerModal';
 
 function fmtDate(d: Date): string {
   const day = String(d.getDate()).padStart(2, '0');
@@ -123,26 +123,26 @@ export default function BillCreateScreen() {
           </View>
 
           {showFrom && (
-            <DateTimePicker
-              testID="from-date-picker"
-              value={fromDate}
-              mode="date"
-              display={Platform.OS === 'ios' ? 'inline' : 'default'}
-              onChange={(_, d) => {
-                setShowFrom(Platform.OS === 'ios');
-                if (d) setFromDate(d);
+            <DatePickerModal
+              visible={showFrom}
+              initialDate={fromDate}
+              title="From Date"
+              onClose={() => setShowFrom(false)}
+              onConfirm={(d) => {
+                setFromDate(d);
+                setShowFrom(false);
               }}
             />
           )}
           {showTo && (
-            <DateTimePicker
-              testID="to-date-picker"
-              value={toDate}
-              mode="date"
-              display={Platform.OS === 'ios' ? 'inline' : 'default'}
-              onChange={(_, d) => {
-                setShowTo(Platform.OS === 'ios');
-                if (d) setToDate(d);
+            <DatePickerModal
+              visible={showTo}
+              initialDate={toDate}
+              title="To Date"
+              onClose={() => setShowTo(false)}
+              onConfirm={(d) => {
+                setToDate(d);
+                setShowTo(false);
               }}
             />
           )}
@@ -169,7 +169,7 @@ export default function BillCreateScreen() {
                 <TextInput
                   testID={`item-name-${idx}`}
                   style={styles.input}
-                  placeholder="Item name (e.g. January)"
+                  placeholder="Item name"
                   placeholderTextColor={colors.onSurfaceTertiary}
                   value={it.name}
                   onChangeText={(v) => updateItem(it.id, 'name', v)}
